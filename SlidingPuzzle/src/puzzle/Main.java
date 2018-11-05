@@ -1,12 +1,13 @@
 package puzzle;
 
-import java.awt.event.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
-import controller.*;
-import model.*;
-import view.*;
+import controller.ExitApplicationController;
+import model.Model;
+import view.Application;
 
 public class Main {
 	public static void main(String[] args) {
