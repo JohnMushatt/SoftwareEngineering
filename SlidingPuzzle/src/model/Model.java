@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Model {
@@ -20,4 +21,16 @@ public class Model {
 	public HashMap<Point,PuzzlePiece> getAllPieces() {
 		return this.puzzlePieces;
 	}
+	void setBoard(ArrayList<PuzzlePiece> puzzlePieces, int boardHeight, int boardWidth) {
+		for(int i = 0; i <boardHeight;i++) {
+			for(int j = 0; j<boardWidth;j++) {
+				this.puzzlePieces.put(new Point(i,j), null);
+			}
+		}
+	}
+	public Model(int startConfig) {
+
+
+	}
+
 }
