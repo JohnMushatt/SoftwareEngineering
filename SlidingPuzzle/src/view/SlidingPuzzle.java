@@ -13,7 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-public class SlidingPuzzle {
+public class SlidingPuzzle extends JFrame {
+
 	private JPanel contentPane;
 	/**
 	 * Launch the application.
