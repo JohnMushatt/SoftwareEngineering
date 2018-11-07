@@ -7,6 +7,7 @@ import java.util.HashMap;
 public class Model {
 	HashMap<Point, PuzzlePiece> puzzlePieces = new HashMap<Point, PuzzlePiece>();
 	PuzzlePiece selectedPiece;
+	PuzzlePiece keyPiece;
 	public final int BOARD_HEIGHT =5;
 	public final int BOARD_WIDTH = 4;
 	public PuzzlePiece getSelectedPiece() {
@@ -19,13 +20,21 @@ public class Model {
 				if(temp==null) {
 					System.out.print(" ");
 				}
-				else {
+				 else {
 					System.out.print("2");
 				}
 			}
 			System.out.println();
 
 		}
+	}
+
+	public
+	public boolean isSolved() {
+		if(keyPiece.getX()==1 && keyPiece.getY()==5) {
+			return true;
+		}
+		return false;
 	}
 	public void setSelectedPiece(PuzzlePiece piece) {
 		this.selectedPiece = piece;
@@ -106,6 +115,7 @@ public class Model {
 
 				if(temp.getHeight()==2 && temp.getWidth()==2) {
 					puzzlePieces.put(new Point(temp.getX()+1,temp.getY()+1), temp);
+					keyPiece = temp;
 				}
 			}
 
