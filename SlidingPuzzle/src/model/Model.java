@@ -7,7 +7,8 @@ import java.util.HashMap;
 public class Model {
 	HashMap<Point, PuzzlePiece> puzzlePieces = new HashMap<Point, PuzzlePiece>();
 	PuzzlePiece selectedPiece;
-
+	public final int BOARD_HEIGHT =5;
+	public final int BOARD_WIDTH = 4;
 	public PuzzlePiece getSelectedPiece() {
 		return selectedPiece;
 	}
@@ -16,6 +17,10 @@ public class Model {
 		this.selectedPiece = piece;
 	}
 
+	/**
+	 * Retreive all the puzzlepieces in the form of a hasmap with key:Point(x,y) value:PuzzlePiece
+	 * @return Hashmap containing Point keys and PuzzlePiece values
+	 */
 	public HashMap<Point, PuzzlePiece> getAllPieces() {
 		return this.puzzlePieces;
 	}
@@ -23,8 +28,6 @@ public class Model {
 	/**
 	 * Initializes the board with Point objects and null PuzzlePiece objects
 	 *
-	 * @param puzzlePieces
-	 *            Arraylist of pieces to add to the board
 	 * @param boardHeight
 	 *            Y Dimension for the board
 	 * @param boardWidth
@@ -86,6 +89,13 @@ public class Model {
 				}
 			}
 
+		}
+		for(int i =0; i <BOARD_HEIGHT;i++) {
+			for(int j = 0; j < BOARD_WIDTH;j++) {
+				if(puzzlePieces.get(new Point(i,j))==null) {
+					puzzlePieces.put(new Point(i,j), null)
+				}
+			}
 		}
 	}
 
