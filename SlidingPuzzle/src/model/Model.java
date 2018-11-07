@@ -12,7 +12,21 @@ public class Model {
 	public PuzzlePiece getSelectedPiece() {
 		return selectedPiece;
 	}
+	void displayBoardBasic() {
+		for(int i =0;i < BOARD_HEIGHT;i++) {
+			for(int j=0; j<BOARD_WIDTH;j++) {
+				PuzzlePiece temp = puzzlePieces.get(new Point(j,i));
+				if(temp==null) {
+					System.out.print(" ");
+				}
+				else {
+					System.out.print("2");
+				}
+			}
+			System.out.println();
 
+		}
+	}
 	public void setSelectedPiece(PuzzlePiece piece) {
 		this.selectedPiece = piece;
 	}
@@ -76,31 +90,41 @@ public class Model {
 				if (temp.getHeight() > 1) {
 
 					//Loop through, filling correct adjacent spots with reference to parent piece
-					for (int j = 0; j < temp.getHeight(); j++) {
+					for (int j = 1; j < temp.getHeight(); j++) {
 
 						puzzlePieces.put(new Point(temp.getX(), temp.getY() + j), temp);
 					}
 				}
+				//If width is greater than 1, start filling in the rest
 				if(temp.getWidth()>1) {
 
-					for(int j = 0; j<temp.getWidth();j++) {
+					//Fill in the appropriate amount of extra pieces by adding references to the parent piece
+					for(int j = 1; j<temp.getWidth();j++) {
 						puzzlePieces.put(new Point(temp.getX()+j,temp.getY()), temp);
 					}
 				}
+
+				if(temp.getHeight()==2 && temp.getWidth()==2) {
+					puzzlePieces.put(new Point(temp.getX()+1,temp.getY()+1), temp);
+				}
 			}
 
 		}
+		/*
+		//Fill in rest of board with null values to complete the board
 		for(int i =0; i <BOARD_HEIGHT;i++) {
 			for(int j = 0; j < BOARD_WIDTH;j++) {
 				if(puzzlePieces.get(new Point(i,j))==null) {
-					puzzlePieces.put(new Point(i,j), null)
+					puzzlePieces.put(new Point(i,j), null);
 				}
 			}
 		}
+		*/
 	}
 
 	public Model() {
 		initialzieBoard(5, 4);
+		displayBoardBasic();
 
 	}
 
