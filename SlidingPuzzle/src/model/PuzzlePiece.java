@@ -22,4 +22,10 @@ public class PuzzlePiece {
 		return height;
 	}
 
+	public int getX() {
+		return origin.x;
+	}
+	public int getY() {
+		return origin.y;
+	}
 }

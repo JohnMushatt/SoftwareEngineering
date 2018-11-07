@@ -13,13 +13,16 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-public class SlidingPuzzle extends JFrame {
+import model.Model;
 
+public class SlidingPuzzle extends JFrame {
+	Model m;
 	private JPanel contentPane;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		Model m = new Model();
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
