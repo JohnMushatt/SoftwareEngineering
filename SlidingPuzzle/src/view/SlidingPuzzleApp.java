@@ -30,7 +30,7 @@ public class SlidingPuzzleApp extends JFrame {
 		this.m = m;
 		setTitle("SlidingPuzzleApp");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 600);
+		setBounds(100, 200, 600, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

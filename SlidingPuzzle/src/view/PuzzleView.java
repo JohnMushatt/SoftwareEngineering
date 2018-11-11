@@ -34,22 +34,26 @@ public class PuzzleView extends JPanel {
 				if (m.isSolved()) {
 					g.setColor(Color.blue);
 				} else {
-					g.setColor(Color.gray);
+					//g.setColor(Color.gray);
 				}
-				if(m.getPiece(r, c)==null) {
+				if (m.getPiece(r, c) != null) {
 					System.out.println("HELP");
+
+					g.fillRect(offset + c * m.getPiece(r, c).getWidth(), offset + r * m.getPiece(r, c).getHeight(),
+							boxWidth - 2 * offset, boxHeight - 2 * offset);
+					if (m.getPiece(r, c).getHeight() == 2 && m.getPiece(r, c).getWidth() == 2) {
+						g.setColor(Color.red);
+					} else {
+						g.setColor(Color.white);
+					}
 				}
-				g.fillRect(offset + c * m.getPiece(r, c).getWidth(), offset + r * m.getPiece(r, c).getHeight(), boxWidth - 2 * offset,
-						boxHeight - 2 * offset);
-				g.setColor(Color.white);
 
-
-				if(m.getSelectedPiece()== m.getPiece(r, c)) {
+				if (m.getSelectedPiece() == m.getPiece(r, c)) {
 					g.setColor(Color.white);
-					g.fillRect(offset+ c*boxWidth, offset + r*boxHeight, boxWidth-2*offset, boxHeight-2*offset);
+					g.fillRect(offset + c * boxWidth, offset + r * boxHeight, boxWidth - 2 * offset,
+							boxHeight - 2 * offset);
 
-				}
-				else {
+				} else {
 
 				}
 			}

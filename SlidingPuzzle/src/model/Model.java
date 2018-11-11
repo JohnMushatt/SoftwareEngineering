@@ -1,9 +1,11 @@
 package model;
 
+import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Model {
-	// HashMap<Point, PuzzlePiece> puzzlePieces = new HashMap<Point, PuzzlePiece>();
+	HashMap<Point, PuzzlePiece> board = new HashMap<Point, PuzzlePiece>();
 	ArrayList<PuzzlePiece> puzzlePieces = new ArrayList<PuzzlePiece>();
 	PuzzlePiece selectedPiece;
 	PuzzlePiece keyPiece;
@@ -83,6 +85,39 @@ public class Model {
 		puzzlePieces.add(squareTwo);
 		puzzlePieces.add(squareThree);
 		puzzlePieces.add(squareFour);
+
+		//Loop throught board
+		for(int r = 0; r < 5; r++) {
+			for(int c = 0; c<4;c++) {
+
+				//Get the current piece
+				PuzzlePiece currentPiece = puzzlePieces.get(c);
+
+				//If we are currently on a piece's origin coordinate
+				if( (currentPiece.getX()==c) && (currentPiece.getY()==r) ) {
+					 board.put(new Point(r,c), currentPiece);
+
+					 //Check if piece is at least 2xn
+					 if(currentPiece.getHeight()>1) {
+						 board.put(new Point(r-1,c), currentPiece);
+
+					 }
+					 //Check if piece is at least nx2
+					 if(currentPiece.getWidth()>1) {
+						 board.put(new Point(r,c+1), currentPiece);
+					 }
+					 //Check if piece is 2x2
+					 if(currentPiece.getHeight()>1 && currentPiece.getWidth()>1) {
+						 board.put(new Point(r-1,c+1), currentPiece);
+					 }
+
+				}
+				else {
+					board.put(new Point(r,c), null);
+				}
+
+			}
+		}
 
 	}
 
