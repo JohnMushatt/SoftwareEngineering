@@ -1,27 +1,25 @@
 package controller;
 
 import model.Model;
-import model.PuzzlePiece;
 import view.PuzzleApp;
 
 public class MovePieceController {
 	private Model m;
 	private PuzzleApp app;
 	private int x,y;
-	private PuzzlePiece piece;
-	public MovePieceController (Model m, PuzzleApp app, PuzzlePiece piece,int x, int y) {
+	public MovePieceController (Model m, PuzzleApp app,int x, int y) {
 		this.m = m;
 		this.app = app;
 		this.x=x;
 		this.y=y;
-		this.piece=piece;
 	}
-	
+
 	public void move() {
-		if(m.getPiece(x, y)!=null) {
-			piece.setX(x);
-			piece.setY(y);
+		if(m.getPiece(x, y)!=null && (x+1>0) &&(x<4) &&(y>0) &&(y<5)) {
+			m.getSelectedPiece().setX(x);
+			m.getSelectedPiece().setY(y);
 		}
-		app.getPuzzleView().refresh();
+		app.getPuzzleView().repaint();
+		System.out.println("MOVE CONTROLLER USED");
 	}
 }

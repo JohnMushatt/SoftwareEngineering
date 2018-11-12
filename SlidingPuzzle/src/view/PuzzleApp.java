@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import controller.MovePieceController;
 import controller.ResetPuzzleController;
+import controller.SelectedPieceController;
 import model.Model;
 
 public class PuzzleApp extends JFrame {
@@ -36,22 +37,45 @@ public class PuzzleApp extends JFrame {
 	public PuzzleApp(Model m) {
 		this.m=m;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 1000);
+		setBounds(100, 100, 800, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+
 		JButton button = new JButton(">");
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new MovePieceController(m,PuzzleApp.this,m.getSelectedPiece().getX(),m.getSelectedPiece().getY()+1).move();
+			}
+		});
 		JButton button_1 = new JButton("<");
-		
-		JButton button_2 = new JButton("^");		
+		button_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new MovePieceController(m,PuzzleApp.this,m.getSelectedPiece().getX(),m.getSelectedPiece().getY()-1).move();
+			}
+		});
+		JButton button_2 = new JButton("^");
+		button_2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new MovePieceController(m,PuzzleApp.this,m.getSelectedPiece().getX()-1,m.getSelectedPiece().getY()).move();
+			}
+		});
 		JButton btnV = new JButton("v");
-		
+		btnV.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new MovePieceController(m,PuzzleApp.this,m.getSelectedPiece().getX()+1,m.getSelectedPiece().getY()).move();
+			}
+		});
 		panel_1 = new PuzzleView(m);
 		panel_1.setBackground(Color.gray);
-		panel_1.setSize(new Dimension(1000,500));
+		panel_1.setSize(new Dimension(500,500));
+		/*
 		panel_1.addMouseListener(new MouseAdapter () {
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(SwingUtilities.isLeftMouseButton(e)) {
@@ -59,6 +83,7 @@ public class PuzzleApp extends JFrame {
 				}
 			}
 		});
+		*/
 		JButton btnReset = new JButton("Reset");
 		btnReset.addActionListener(new ActionListener() {
 
@@ -67,12 +92,22 @@ public class PuzzleApp extends JFrame {
 				new ResetPuzzleController(PuzzleApp.this,m).reset();
 			}
 		});
+
+		panel_1.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(SwingUtilities.isLeftMouseButton(e)) {
+					new SelectedPieceController(m,PuzzleApp.this,e.getX(),e.getY()).selectPiece();
+				}
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 800, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -106,7 +141,7 @@ public class PuzzleApp extends JFrame {
 							.addComponent(btnReset))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(10)
-							.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 800, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(141, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);

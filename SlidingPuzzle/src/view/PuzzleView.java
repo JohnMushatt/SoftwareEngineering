@@ -44,27 +44,17 @@ public class PuzzleView extends JPanel {
 			redraw();
 		}
 		g.drawImage(offScreenImage, 0, 0, this);
-		
-		if(m == null) 
+
+		if(m == null)
 			return;
 		if(m)
 			*/
-		
-		int boxHeight = getHeight() / 5;
-		int boxWidth = getWidth() / 4;
+		int boxWidth = 100;
+		int boxHeight = 100;
 		for (int r = 0; r < 5; r++) {
 			for (int c = 0; c < 4; c++) {
-				if (m.isSolved()) {
-					g.setColor(Color.blue);
-				} else {
-					g.setColor(Color.gray);
-				}
-				g.fillRect(offset + c * boxWidth, offset + r * boxHeight, boxWidth - 2 * offset,
-						boxHeight - 2 * offset);
 
-				g.setColor(Color.white);
 				PuzzlePiece value = m.getOriginalPiece(c, r);
-				System.out.println(value);
 				if (value != null) {
 					if (value.getWidth() == 2 && value.getHeight() == 2) {
 						g.setColor(Color.red);
@@ -83,15 +73,17 @@ public class PuzzleView extends JPanel {
 				}
 			}
 		}
-		
+
 	}
 	public void redraw() {
 		for(PuzzlePiece p: m.getPieces()) {
-			
+			if(p.getWidth()==2 &&p.getHeight()==2) {
+
+			}
 		}
 	}
 	public void refresh() {
-		redraw();
+		//redraw();
 		repaint();
 	}
 

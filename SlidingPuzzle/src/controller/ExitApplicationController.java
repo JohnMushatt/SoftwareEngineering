@@ -17,5 +17,6 @@ public class ExitApplicationController {
 			app.setVisible(false);
 			app.dispose();
 		}
+		System.out.println("EXIT CONTROLLER USED");
 	}
 }
