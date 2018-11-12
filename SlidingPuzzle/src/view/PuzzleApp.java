@@ -11,6 +11,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingUtilities;
@@ -85,6 +86,9 @@ public class PuzzleApp extends JFrame {
 		});
 		*/
 		JButton btnReset = new JButton("Reset");
+		JLabel lblMoves = new JLabel("Moves:");
+
+		JLabel label = new JLabel("" +m.getMoveCount());
 		btnReset.addActionListener(new ActionListener() {
 
 			@Override
@@ -102,34 +106,50 @@ public class PuzzleApp extends JFrame {
 				}
 			}
 		});
+
+		JLabel lblMoves_1 = new JLabel("Moves:");
+
+		JLabel lblMgetmovecount = new JLabel("" +m.getMoveCount());
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(button_1)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(button)
-							.addContainerGap())
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(button_2)
-							.addGap(36))
-						.addGroup(gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED, 254, Short.MAX_VALUE)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(btnReset)
-								.addComponent(btnV))
-							.addGap(37))))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(button_1)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(button)
+									.addContainerGap())
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(button_2)
+									.addGap(36))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+										.addComponent(btnReset)
+										.addComponent(btnV))
+									.addGap(37))))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(18)
+							.addComponent(lblMoves_1)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblMgetmovecount)
+							.addGap(238))))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(87)
+							.addGap(22)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblMoves_1)
+								.addComponent(lblMgetmovecount))
+							.addGap(49)
 							.addComponent(button_2)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
@@ -142,7 +162,7 @@ public class PuzzleApp extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(10)
 							.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(141, Short.MAX_VALUE))
+					.addContainerGap(233, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

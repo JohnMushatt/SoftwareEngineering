@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -23,12 +22,6 @@ public class PuzzleView extends JPanel {
 	public PuzzleView(Model m) {
 
 		this.m = m;
-	}
-	@Override
-	public Dimension getPreferredSize() {
-		int width = 2*512 + 2*offset;
-		int height = 2*512 + 2*offset;
-		return new Dimension(width,height);
 	}
 	@Override
 	public void paintComponent(Graphics g) {
@@ -53,7 +46,9 @@ public class PuzzleView extends JPanel {
 		int boxHeight = 100;
 		for (int r = 0; r < 5; r++) {
 			for (int c = 0; c < 4; c++) {
-
+				if(m.isSolved()) {
+					g.setColor(Color.blue);
+				}
 				PuzzlePiece value = m.getOriginalPiece(c, r);
 				if (value != null) {
 					if (value.getWidth() == 2 && value.getHeight() == 2) {
@@ -61,8 +56,15 @@ public class PuzzleView extends JPanel {
 					} else {
 						g.setColor(Color.white);
 					}
+
 					g.fillRect(offset + c * boxWidth, offset  + r * boxHeight,
 							(boxWidth *value.getWidth()) - 2 * offset, (boxHeight *value.getHeight()) - 2 * offset);
+					value.setScreenX(offset + c * boxWidth);
+					value.setScreenY(offset  + r * boxHeight);
+					System.out.println("XVALUE: " + value.getScreenX() + " YVALUE: " + value.getScreenY());
+					//if(m.getSelectedPiece()==value) {
+						//g.drawRect(offset+c*boxWidth, offset +r*boxHeight, (boxWidth *value.getWidth()) - 2 * offset, height);
+					//}
 					// if (value==m.getSelectedPiece() ||true) {
 					// g.setColor(Color.black);
 					// g.fillRect(offset+ c*boxWidth, offset + r*boxHeight, boxWidth-2*offset,
@@ -70,6 +72,7 @@ public class PuzzleView extends JPanel {
 					// } else {
 					// g.drawString("" + value, c*boxWidth + boxWidth/2, r*boxHeight + boxHeight/2);
 					// }
+
 				}
 			}
 		}

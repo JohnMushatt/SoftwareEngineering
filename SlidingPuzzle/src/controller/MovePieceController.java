@@ -18,6 +18,8 @@ public class MovePieceController {
 		if(m.getPiece(x, y)!=null && (x+1>0) &&(x<4) &&(y>0) &&(y<5)) {
 			m.getSelectedPiece().setX(x);
 			m.getSelectedPiece().setY(y);
+			m.getSelectedPiece().computeRectangle();
+			m.updateMoves();
 		}
 		app.getPuzzleView().repaint();
 		System.out.println("MOVE CONTROLLER USED");

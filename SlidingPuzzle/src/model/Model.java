@@ -11,7 +11,7 @@ public class Model {
 	PuzzlePiece keyPiece;
 	public final int BOARD_HEIGHT = 5;
 	public final int BOARD_WIDTH = 4;
-
+	private int moveCount = 0;
 	public PuzzlePiece getSelectedPiece() {
 		return selectedPiece;
 	}
@@ -19,6 +19,12 @@ public class Model {
 	public PuzzlePiece getPiece(int x, int y) {
 
 		return this.board.get(new Point(y,x));
+	}
+	public void updateMoves() {
+		this.moveCount++;
+	}
+	public int getMoveCount() {
+		return this.moveCount;
 	}
 	public PuzzlePiece getOriginalPiece(int x, int y) {
 		for(int i = 0; i < puzzlePieces.size();i++) {
@@ -30,7 +36,7 @@ public class Model {
 		return null;
 	}
 	public void updatePiece(PuzzlePiece piece, int x, int y) {
-		
+
 	}
 	public ArrayList<PuzzlePiece> getPieces() {
 		return this.puzzlePieces;

@@ -8,7 +8,7 @@ public class SelectedPieceController {
 	private Model m;
 	private PuzzleApp app;
 	private int x,y;
-	public SelectedPieceController(Model m, PuzzleApp app, int x, int y) {
+	public SelectedPieceController(Model m, PuzzleApp app,int x, int y) {
 		this.m =m;
 		this.app = app;
 		this.x=x;
@@ -16,26 +16,27 @@ public class SelectedPieceController {
 	}
 
 	public void selectPiece() {
+		System.out.println("X: " +x + " Y: " + y);
 		for(PuzzlePiece p: m.getPieces()) {
-			boolean correctPiece = false;
-			if( (x>=p.getX()) && (x<= p.getX()+p.getWidth()*100)) {
-				correctPiece = true;
-			}
-			else {
-				correctPiece = false;
-			}
-			if( (p.getY() < y) && (p.getY() + p.getHeight()*100-10) >y) {
-				correctPiece = true;
-			}
-			else {
-				correctPiece =false;
-			}
 
-			if(correctPiece) {
+			if(p.getRectangle().contains(x, y)) {
 				m.setSelectedPiece(p);
 			}
+			//boolean correctPiece = true;
+			/*
+			if((x<p.getX()) || (x> p.getX()+p.getWidth()*100 - 10)) {
+				correctPiece = false;
+			}
+			if( (y<p.getY()) || (y>p.getY()+p.getWidth()*100 -10)) {
+				correctPiece = false;
+			}
+			*/
+			//if(correctPiece) {
+				//m.setSelectedPiece(p);
+			//}
 		}
-		app.getPuzzleView().repaint();
 		System.out.println("SELECT PIECE USED\t CURRENT SELECTED PIECE: " + m.getSelectedPiece());
+
+		app.getPuzzleView().repaint();
 	}
 }
