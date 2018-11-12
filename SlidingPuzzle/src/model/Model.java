@@ -29,6 +29,12 @@ public class Model {
 		}
 		return null;
 	}
+	public void updatePiece(PuzzlePiece piece, int x, int y) {
+		
+	}
+	public ArrayList<PuzzlePiece> getPieces() {
+		return this.puzzlePieces;
+	}
 	public boolean isSolved() {
 		if (keyPiece != null) {
 			if (keyPiece.getX() == 1 && keyPiece.getY() == 5) {
