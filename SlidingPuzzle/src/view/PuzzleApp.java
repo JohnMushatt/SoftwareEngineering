@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -11,8 +13,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import controller.MovePieceController;
 import controller.ResetPuzzleController;
 import model.Model;
 
@@ -38,7 +42,6 @@ public class PuzzleApp extends JFrame {
 		setContentPane(contentPane);
 		
 		JButton button = new JButton(">");
-		
 		JButton button_1 = new JButton("<");
 		
 		JButton button_2 = new JButton("^");		
@@ -47,7 +50,15 @@ public class PuzzleApp extends JFrame {
 		panel_1 = new PuzzleView(m);
 		panel_1.setBackground(Color.gray);
 		panel_1.setSize(new Dimension(1000,500));
-		
+		panel_1.addMouseListener(new MouseAdapter () {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(SwingUtilities.isLeftMouseButton(e)) {
+					new MovePieceController(m,PuzzleApp.this,e.getX(),e.getY()).move();
+				}
+			}
+		});
 		JButton btnReset = new JButton("Reset");
 		btnReset.addActionListener(new ActionListener() {
 
