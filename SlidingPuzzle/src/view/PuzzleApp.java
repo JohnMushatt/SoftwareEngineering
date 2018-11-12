@@ -109,7 +109,8 @@ public class PuzzleApp extends JFrame {
 
 		JLabel lblMoves_1 = new JLabel("Moves:");
 
-		JLabel lblMgetmovecount = new JLabel("" +m.getMoveCount());
+		JLabel lblMgetmovecount = new JLabel(" " + 0);
+		lblMgetmovecount.setText(" " +m.getMoveCount());
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
