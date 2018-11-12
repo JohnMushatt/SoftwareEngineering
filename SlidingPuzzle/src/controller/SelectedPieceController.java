@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.Rectangle;
+
 import model.Model;
 import model.PuzzlePiece;
 import view.PuzzleApp;
@@ -7,19 +9,22 @@ import view.PuzzleApp;
 public class SelectedPieceController {
 	private Model m;
 	private PuzzleApp app;
-	private int x,y;
-	public SelectedPieceController(Model m, PuzzleApp app,int x, int y) {
+
+	public SelectedPieceController(Model m, PuzzleApp app) {
 		this.m =m;
 		this.app = app;
-		this.x=x;
-		this.y=y;
+
 	}
 
-	public void selectPiece() {
-		System.out.println("X: " +x + " Y: " + y);
+	public void selectPiece(int x, int y) {
+		System.out.println("X: " +x + "\tY: " + y);
 		for(PuzzlePiece p: m.getPieces()) {
 
-			if(p.getRectangle().contains(x, y)) {
+
+			Rectangle rect = new Rectangle(p.getScreenX(), p.getScreenY(), p.getWidth()*100-10, p.getHeight()*100-10);
+
+			if(rect.contains(x, y)) {
+
 				m.setSelectedPiece(p);
 			}
 			//boolean correctPiece = true;

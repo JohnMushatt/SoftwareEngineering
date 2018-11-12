@@ -47,28 +47,28 @@ public class PuzzleApp extends JFrame {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new MovePieceController(m,PuzzleApp.this,m.getSelectedPiece().getX(),m.getSelectedPiece().getY()+1).move();
+				new MovePieceController(m,PuzzleApp.this,m.getSelectedPiece().getX()+1,m.getSelectedPiece().getY()).move();
 			}
 		});
 		JButton button_1 = new JButton("<");
 		button_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new MovePieceController(m,PuzzleApp.this,m.getSelectedPiece().getX(),m.getSelectedPiece().getY()-1).move();
+				new MovePieceController(m,PuzzleApp.this,m.getSelectedPiece().getX()-1,m.getSelectedPiece().getY()).move();
 			}
 		});
 		JButton button_2 = new JButton("^");
 		button_2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new MovePieceController(m,PuzzleApp.this,m.getSelectedPiece().getX()-1,m.getSelectedPiece().getY()).move();
+				new MovePieceController(m,PuzzleApp.this,m.getSelectedPiece().getX(),m.getSelectedPiece().getY()-1).move();
 			}
 		});
 		JButton btnV = new JButton("v");
 		btnV.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new MovePieceController(m,PuzzleApp.this,m.getSelectedPiece().getX()+1,m.getSelectedPiece().getY()).move();
+				new MovePieceController(m,PuzzleApp.this,m.getSelectedPiece().getX(),m.getSelectedPiece().getY()+1).move();
 			}
 		});
 		panel_1 = new PuzzleView(m);
@@ -102,7 +102,7 @@ public class PuzzleApp extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(SwingUtilities.isLeftMouseButton(e)) {
-					new SelectedPieceController(m,PuzzleApp.this,e.getX(),e.getY()).selectPiece();
+					new SelectedPieceController(m,PuzzleApp.this).selectPiece(e.getX(),e.getY());
 				}
 			}
 		});

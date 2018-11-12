@@ -61,7 +61,7 @@ public class PuzzleView extends JPanel {
 							(boxWidth *value.getWidth()) - 2 * offset, (boxHeight *value.getHeight()) - 2 * offset);
 					value.setScreenX(offset + c * boxWidth);
 					value.setScreenY(offset  + r * boxHeight);
-					System.out.println("XVALUE: " + value.getScreenX() + " YVALUE: " + value.getScreenY());
+					System.out.println("Piece: " +value.getWidth() + "x" + value.getHeight()+"\tXVALUE: " + value.getScreenX() + "\tYVALUE: " + value.getScreenY());
 					//if(m.getSelectedPiece()==value) {
 						//g.drawRect(offset+c*boxWidth, offset +r*boxHeight, (boxWidth *value.getWidth()) - 2 * offset, height);
 					//}

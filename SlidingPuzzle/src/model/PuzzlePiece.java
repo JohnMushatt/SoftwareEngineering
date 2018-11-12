@@ -1,7 +1,6 @@
 package model;
 
 import java.awt.Point;
-import java.awt.Rectangle;
 
 public class PuzzlePiece {
 
@@ -9,7 +8,7 @@ public class PuzzlePiece {
 	private final Point original;
 	private int width,height;
 	private int screenX,screenY;
-	Rectangle piece;
+
 	public PuzzlePiece(int x, int y, int width, int height) {
 		this.width = width;
 		this.height= height;
@@ -19,18 +18,10 @@ public class PuzzlePiece {
 		original = new Point(x,y);
 		screenX=0;
 		screenY=0;
-		piece = new Rectangle(screenX,screenY,width,height);
 		//computeRectangle();
 
 	}
 
-	public void computeRectangle() {
-		System.out.println("Rectangle Updated");
-		piece.setRect(screenX, screenY, width, height);
-	}
-	public Rectangle getRectangle() {
-		return this.piece;
-	}
 	public int getWidth() {
 		return width;
 	}

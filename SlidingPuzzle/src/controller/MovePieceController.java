@@ -15,10 +15,14 @@ public class MovePieceController {
 	}
 
 	public void move() {
-		if(m.getPiece(x, y)!=null && (x+1>0) &&(x<4) &&(y>0) &&(y<5)) {
-			m.getSelectedPiece().setX(x);
+		System.out.println("ATTEMPTING TO MOVE PIECE AT + " +m.getSelectedPiece().getX()+"," + m.getSelectedPiece().getY()+
+				" to "+x + "," + y);
+		if(m.getPiece(x, y)==null) {
+
+			m.getSelectedPiece().setX(x);;
 			m.getSelectedPiece().setY(y);
-			m.getSelectedPiece().computeRectangle();
+			m.updatePiece(m.getSelectedPiece(), x, y);
+			System.out.println("Piece is not at: " + m.getSelectedPiece().getX() +","+m.getSelectedPiece().getY());
 			m.updateMoves();
 		}
 		app.getPuzzleView().repaint();
