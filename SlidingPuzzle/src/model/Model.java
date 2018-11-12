@@ -36,8 +36,10 @@ public class Model {
 		return null;
 	}
 	public void updatePiece(PuzzlePiece piece, int x, int y) {
-		piece.setScreenX(x);
-		piece.setScreenY(y);
+		//piece.setScreenX(x);
+		//piece.setScreenY(y);
+		piece.setX(x);
+		piece.setY(y);
 	}
 	public ArrayList<PuzzlePiece> getPieces() {
 		return this.puzzlePieces;

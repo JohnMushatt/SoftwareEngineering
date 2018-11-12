@@ -15,17 +15,22 @@ public class MovePieceController {
 	}
 
 	public void move() {
-		System.out.println("ATTEMPTING TO MOVE PIECE AT + " +m.getSelectedPiece().getX()+"," + m.getSelectedPiece().getY()+
-				" to "+x + "," + y);
-		if(m.getPiece(x, y)==null) {
-
-			m.getSelectedPiece().setX(x);;
+		System.out.println("Attempting to move piece: " + m.getSelectedPiece());
+		System.out.println("Piece at attempted destination: " + m.getOriginalPiece(x, y));
+		if(m.getOriginalPiece(x, y)==null) {
+			//System.out.println("ATTEMPTING TO MOVE PIECE AT: " +m.getSelectedPiece().getX()+"," + m.getSelectedPiece().getY()+
+			//		" to "+x + "," + y);
+		//	System.out.println("PIECE AT MOVE DESTINATION: "+m.getOriginalPiece(x, y));
+			m.getSelectedPiece().setX(x);
 			m.getSelectedPiece().setY(y);
+			
 			m.updatePiece(m.getSelectedPiece(), x, y);
-			System.out.println("Piece is not at: " + m.getSelectedPiece().getX() +","+m.getSelectedPiece().getY());
+
 			m.updateMoves();
+			app.getPuzzleView().repaint();
+
+			System.out.println("MOVE CONTROLLER USED");
+
 		}
-		app.getPuzzleView().repaint();
-		System.out.println("MOVE CONTROLLER USED");
 	}
 }
