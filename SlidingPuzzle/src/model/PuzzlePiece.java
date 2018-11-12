@@ -28,4 +28,8 @@ public class PuzzlePiece {
 	public int getY() {
 		return origin.y;
 	}
+	@Override
+	public String toString() {
+		return "Dimensions: " + getHeight() +"x" + getWidth();
+	}
 }

@@ -30,14 +30,14 @@ public class SlidingPuzzleApp extends JFrame {
 		this.m = m;
 		setTitle("SlidingPuzzleApp");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 200, 600, 600);
+		setBounds(200, 200  , 800, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
 		puzzleView = new PuzzleView(m);
 		puzzleView.setBackground(Color.GRAY);
-		puzzleView.setSize(new Dimension(400, 500));
+		puzzleView.setSize(new Dimension(700, 600));
 
 		JButton btnReset = new JButton("Reset");
 

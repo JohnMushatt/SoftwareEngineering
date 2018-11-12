@@ -17,21 +17,18 @@ public class Model {
 	}
 
 	public PuzzlePiece getPiece(int x, int y) {
-		//Check list of puzzle pieces
-		for (int i = 0; i < puzzlePieces.size(); i++) {
-			//Get current piece
-			PuzzlePiece current = puzzlePieces.get(i);
 
-			//If the current piece has coordinates
-			if ((current.getX() == x) && (current.getY() == y)) {
+		return this.board.get(new Point(y,x));
+	}
+	public PuzzlePiece getOriginalPiece(int x, int y) {
+		for(int i = 0; i < puzzlePieces.size();i++) {
+			PuzzlePiece current = puzzlePieces.get(i);
+			if(current.getX()==x && current.getY()==y) {
 				return current;
 			}
 		}
-
 		return null;
-
 	}
-
 	public boolean isSolved() {
 		if (keyPiece != null) {
 			if (keyPiece.getX() == 1 && keyPiece.getY() == 5) {
@@ -85,35 +82,32 @@ public class Model {
 		puzzlePieces.add(squareTwo);
 		puzzlePieces.add(squareThree);
 		puzzlePieces.add(squareFour);
+		// Loop throught board
+		for (int r = 0; r < 5; r++) {
+			for (int c = 0; c < 4; c++) {
 
-		//Loop throught board
-		for(int r = 0; r < 5; r++) {
-			for(int c = 0; c<4;c++) {
+				// Get the current piece
+				PuzzlePiece currentPiece = getOriginalPiece(c,r);
+				// If we are currently on a piece's origin coordinate
+				if ((currentPiece!=null) && (currentPiece.getX() == c) && (currentPiece.getY() == r)) {
+					board.put(new Point(r, c), currentPiece);
 
-				//Get the current piece
-				PuzzlePiece currentPiece = puzzlePieces.get(c);
+					// Check if piece is at least 2xn
+					if (currentPiece.getHeight() > 1) {
+						board.put(new Point(r +1, c), currentPiece);
 
-				//If we are currently on a piece's origin coordinate
-				if( (currentPiece.getX()==c) && (currentPiece.getY()==r) ) {
-					 board.put(new Point(r,c), currentPiece);
+					}
+					// Check if piece is at least nx2
+					if (currentPiece.getWidth() > 1) {
+						board.put(new Point(r, c + 1), currentPiece);
+					}
+					// Check if piece is 2x2
+					if (currentPiece.getHeight() > 1 && currentPiece.getWidth() > 1) {
+						board.put(new Point(r + 1, c + 1), currentPiece);
+					}
 
-					 //Check if piece is at least 2xn
-					 if(currentPiece.getHeight()>1) {
-						 board.put(new Point(r-1,c), currentPiece);
-
-					 }
-					 //Check if piece is at least nx2
-					 if(currentPiece.getWidth()>1) {
-						 board.put(new Point(r,c+1), currentPiece);
-					 }
-					 //Check if piece is 2x2
-					 if(currentPiece.getHeight()>1 && currentPiece.getWidth()>1) {
-						 board.put(new Point(r-1,c+1), currentPiece);
-					 }
-
-				}
-				else {
-					board.put(new Point(r,c), null);
+				} else {
+					board.put(new Point(r, c), null);
 				}
 
 			}
